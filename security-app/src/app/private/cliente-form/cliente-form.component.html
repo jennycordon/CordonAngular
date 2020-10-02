@@ -1,0 +1,54 @@
+<!--Formulario para ingresar un cliente-->
+<div class="row">
+
+  <div class="col"></div>
+  <div class="col">
+    <form class="form-group" (ngSubmit)="ngOnGuardar()" #form="ngForm">
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="idInput">Id</label>
+        <input class="form-control" id="idInput" type="text" placeholder="id..." disabled="true"
+        [(ngModel)]="idCliente" name="idCliente">
+        </mat-form-field>
+      </fieldset>
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="nombreInput">Nombre</label>
+        <input class="form-control" id="nombreInput" type="text" placeholder="nombre..."
+        [(ngModel)]="nombreCliente" name="nombreCliente">
+        </mat-form-field>
+      </fieldset>
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="direccionInput">Dirección</label>
+        <input class="form-control" id="direccionInput" type="text" placeholder="direccion..."
+        [(ngModel)]="direccionCliente" name="direccionCliente">
+      </mat-form-field>
+      </fieldset>
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="nitInput">Nit</label>
+        <input class="form-control" id="nitInput" type="text" placeholder="nit..."
+        [(ngModel)]="nitCliente" name="nitCliente">
+        </mat-form-field>
+      </fieldset>
+      <button type="submit" class="btn btn-primary" (click)="ngOnGuardar()">Guardar</button>
+      <button type="submit" class="btn btn-danger" (click)="ngOnCancelar()">Cancelar</button>
+    </form>
+  </div>
+</div>
+<!--Muestra la tabla de facturas
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <ul class="list-group">
+      <li class="list-group-item">Tabla facturas</li>
+      <li class="list-group-item list-group-item-primary" *ngFor="let fact of facturas">
+        {{"Id="+fact.id+","
+        +"cliente_id="+fact.cliente_id
+        +","+"Empleado_id="+fact.empleado_id
+        +","+"creado="+fact.creado
+        +","+"Estado="+fact.estado}}</li>
+    </ul>
+  </div>
+</div>-->
+

@@ -1,0 +1,19 @@
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Creado_por</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of productos">
+      <th scope="row"><a [routerLink]="['/productos', prod.id]">{{prod.id}}</a></th>
+      <td>{{prod.nombre}}</td>
+      <td>{{prod.precio}}</td>
+      <td>{{prod.creado_por}}</td>
+    </tr>
+  </tbody>
+</table>
+

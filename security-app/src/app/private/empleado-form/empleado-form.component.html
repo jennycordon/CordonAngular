@@ -1,0 +1,38 @@
+<!--Formulario para ingresar un cliente-->
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <form class="form-group" (ngSubmit)="ngOnGuardar()" #form="ngForm">
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="nombreInput">Id</label>
+        <input class="form-control" id="nombreInput" type="text" placeholder="id..." disabled="true"
+        [(ngModel)]="idEmpleado" name="idEmpleado">
+        </mat-form-field>
+      </fieldset>
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="idInput">Codigo</label>
+        <input class="form-control" id="idInput" type="text" placeholder="codigo..."
+        [(ngModel)]="codigoEmpleado" name="codigoEmpleado">
+        </mat-form-field>
+      </fieldset>
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="direccionInput">Nombre</label>
+        <input class="form-control" id="direccionInput" type="text" placeholder="nombre..."
+        [(ngModel)]="nombreEmpleado" name="nombreEmpleado">
+        </mat-form-field>
+      </fieldset>
+      <fieldset>
+        <mat-form-field appearence="fill">
+        <label class="control-label" for="nitInput">Salario</label>
+        <input class="form-control" id="nitInput" type="text" placeholder="salario..."
+        [(ngModel)]="salarioEmpleado" name="salarioEmpleado">
+        </mat-form-field>
+      </fieldset>
+      <button type="submit" class="btn btn-primary" (click)="ngOnGuardar()">Guardar</button>
+      <button type="submit" class="btn btn-danger" (click)="ngOnCancelar()">Cancelar</button>
+    </form>
+  </div>
+</div>

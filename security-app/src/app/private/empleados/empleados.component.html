@@ -1,0 +1,60 @@
+
+<div class="mat-elevation-z8">
+<table mat-table class="full-width-table" matSort aria-label="Elements">
+<!--<table class="table table-striped table-dark">-->
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let empleados">{{empleados.id}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Codigo">
+    <th mat-header-cell *matHeaderCellDef> Codigo </th>
+    <td mat-cell *matCellDef="let empleados">{{empleados.codigo}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="Nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let empleados">{{empleados.nombre}}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Salario">
+    <th mat-header-cell *matHeaderCellDef> Salario </th>
+    <td mat-cell *matCellDef="let empleados">{{empleados.salario}}</td>
+  </ng-container>
+</table>
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>-->
+
+</div>
+
+
+
+
+
+
+
+<!--
+<table mat-table [dataSource]="empleados"  class="mat-elevation-z8">
+
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Codigo</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Salario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of empleados">
+      <th scope="row"><a [routerLink]="['/productos', emp.id]">{{emp.id}}</a></th>
+      <td>{{emp.codigo}}</td>
+      <td>{{emp.nombre}}</td>
+      <td>{{emp.salario}}</td>
+    </tr>
+  </tbody>
+</table>-->

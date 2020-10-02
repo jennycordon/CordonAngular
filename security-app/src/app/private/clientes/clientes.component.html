@@ -1,0 +1,27 @@
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Nit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let clie of clientes">
+      <th scope="row"><a [routerLink]="['/clientes', clie.id]">{{clie.id}}</a></th>
+      <td>{{clie.nombre}}</td>
+      <td>{{clie.direccion}}</td>
+      <td>{{clie.nit}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--Boton agregar-->
+<div class="row">
+  <div  class="col"></div>
+  <div class="col"><button type="submit" class="btn btn-primary" (click)="onAgregar()">Agregar</button></div>
+  <div  class="col"></div>
+</div>
+
+

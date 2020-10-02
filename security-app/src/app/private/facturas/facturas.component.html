@@ -1,0 +1,23 @@
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Cliente_id</th>
+      <th scope="col">Empleado_id</th>
+      <th scope="col">Creado</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fact of facturas">
+      <th scope="row"><a [routerLink]="['/facturas', fact.id]">{{fact.id}}</a></th>
+      <td>{{fact.cliente_id}}</td>
+      <td>{{fact.empleado_id}}</td>
+      <td>{{fact.creado}}</td>
+      <td>{{fact.estado}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
