@@ -2,7 +2,7 @@ const express = require("express");
 const mySqlCon = require("../db/database");
 const security = require ("../security/security");
 const router = express.Router();
-
+//0907-17-23013
 router.get('/clientes',security,(req, res)=>{
     console.log('get clientes')
     mySqlCon.query("select * from clientes",(err,rows,fields)=>{
