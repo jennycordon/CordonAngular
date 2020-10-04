@@ -29,6 +29,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ProductoFormComponent } from './private/producto-form/producto-form.component';
+import { ProductoFacturaFormComponent } from './private/producto-factura-form/producto-factura-form.component';
+
 //0907-07-23013
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { MatSortModule } from '@angular/material/sort';
     ClienteFormComponent,
     FacturaFormComponent,
     EmpleadoFormComponent,
+    ProductoFormComponent,
+    ProductoFacturaFormComponent
+
   ],
   imports: [
     BrowserModule,

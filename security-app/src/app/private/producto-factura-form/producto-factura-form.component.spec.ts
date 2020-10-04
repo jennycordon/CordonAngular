@@ -7,15 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
-import { EmpleadoFormComponent } from './empleado-form.component';
+import { ProductoFacturaFormComponent } from './producto-factura-form.component';
 
-describe('EmpleadoFormComponent', () => {
-  let component: EmpleadoFormComponent;
-  let fixture: ComponentFixture<EmpleadoFormComponent>;
-//<!--0907-17-23013-->
+describe('ProductoFacturaFormComponent', () => {
+  let component: ProductoFacturaFormComponent;
+  let fixture: ComponentFixture<ProductoFacturaFormComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmpleadoFormComponent ],
+      declarations: [ ProductoFacturaFormComponent ],
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -29,7 +29,7 @@ describe('EmpleadoFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmpleadoFormComponent);
+    fixture = TestBed.createComponent(ProductoFacturaFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

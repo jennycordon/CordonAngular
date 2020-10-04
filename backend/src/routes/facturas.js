@@ -99,7 +99,7 @@ router.patch('/facturas/:id', security, (req,res)=>{
         }
     })
 });
-
+/*
 //patch con id
 router.delete('/facturas/:id', security, (req,res)=>{
     let fac = req.body;
@@ -113,6 +113,20 @@ router.delete('/facturas/:id', security, (req,res)=>{
             res.status(500).send(err.sqlMessage);
         }
     })
+});*/
+
+ //para eliminar
+ router.delete('/facturas/:id',security,(req,res)=>{
+    console.log('delete facturas')
+    mySqlCon.query('delete from facturas where id = ?',
+    [req.params.id], (err,result)=>{
+        if(!err){
+            res.send('deleted Succesfully');
+        }else{
+            console.log(err);
+        }
+    })
 });
+
 
 module.exports = router;

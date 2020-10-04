@@ -1,17 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+//<!--0907-17-23013-->
 import { FacturasComponent } from './facturas.component';
 
 describe('FacturasComponent', () => {
   let component: FacturasComponent;
   let fixture: ComponentFixture<FacturasComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FacturasComponent ]
-    })
-    .compileComponents();
-  });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ FacturasComponent ],
+      imports: [
+        NoopAnimationsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+      ]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FacturasComponent);
@@ -19,7 +28,7 @@ describe('FacturasComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

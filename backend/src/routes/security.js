@@ -14,7 +14,7 @@ router.post("/login",(req,res)=>{
                 return res.status(401).send('user does not exist');    
             }
             if(body.password === user.password){
-                const token = jwt.sign({_id: user.id},'secret',{ expiresIn: '1m'});
+                const token = jwt.sign({_id: user.id},'secret',{ expiresIn: '1h'});
                 return res.status(200).json({token});
             }else{
                 return res.status(401).send('login invalid');

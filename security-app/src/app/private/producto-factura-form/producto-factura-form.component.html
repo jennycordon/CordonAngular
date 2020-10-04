@@ -1,33 +1,38 @@
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>EMPLEADO</mat-card-title>
+      <mat-card-title>PRODUCTO FACTURA</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="col">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="id..." formControlName="id"  [(ngModel)]="empleado.id">
+            <input matInput placeholder="id..." formControlName="id"  [(ngModel)]="productofactura.id">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="codigo..." formControlName="codigo" [(ngModel)]="empleado.codigo">
+            <input matInput placeholder="factura_id..." formControlName="factura_id" [(ngModel)]="productofactura.factura_id">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="nombre..." formControlName="nombre" [(ngModel)]="empleado.nombre">
+            <input matInput placeholder="producto_id..." formControlName="producto_id" [(ngModel)]="productofactura.producto_id">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="salario..." formControlName="salario"[(ngModel)]="empleado.salario">
+            <input matInput placeholder="cantidad..." formControlName="cantidad"[(ngModel)]="productofactura.cantidad">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="creado por..." formControlName="creado_por" [(ngModel)]="empleado.creado_por">
+            <input matInput placeholder="subtotal..." formControlName="subtotal" [(ngModel)]="productofactura.subtotal">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="creado_por..." formControlName="creado_por" [(ngModel)]="productofactura.creado_por">
           </mat-form-field>
         </div>
       </div>

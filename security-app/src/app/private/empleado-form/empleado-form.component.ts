@@ -1,65 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { EmpleadosService } from './../../services/empleado.service';
+import { Empleado } from './../../models/empleado';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Empleado } from 'src/app/models/empleado';
-import { EmpleadoDataServiceService } from './../../services/empleado-data-service.service';
-//angular
-//import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-empleado-form',
   templateUrl: './empleado-form.component.html',
   styleUrls: ['./empleado-form.component.css']
 })
+//<!--0907-17-23013-->
 export class EmpleadoFormComponent implements OnInit {
 
-  constructor(private  router: Router,
-              private service: EmpleadoDataServiceService,
-              private route: ActivatedRoute) { }
+  empleado: Empleado = {"id": null, "codigo": "", "nombre": "", "salario": null, "creado_por": ""};
+  addressForm: FormGroup;
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private service: EmpleadosService,
+    private route: ActivatedRoute) { }
 
-    codigoEmpleado: string;
-    idEmpleado: number;
-    nombreEmpleado: string;
-    salarioEmpleado: number;
-    idParam: number;
+    id:string;//
 
-  ngOnInit(): void {
-    if (this.route.snapshot.paramMap.has('id')){
-      this.idParam = +this.route.snapshot.paramMap.get('id');
+    ngOnInit(): void {
+      this.id = this.route.snapshot.paramMap.get('id');//
+      if(this.id != undefined){
+        console.log(this.id);//
+        this.service.getEmpleado(this.id).subscribe(//
+          res => {
+            this.empleado = res[0];
+            console.log(this.empleado);
+          }
+        ) ;
+      }
 
-      if (this.idParam != null){
-        console.log(this.idParam);
-        this.service.getEmpleado(this.idParam).subscribe(
-          (empleados: Empleado[]) => {
-            console.log(empleados[0]);
-            this.codigoEmpleado = empleados[0].codigo;
-            this.idEmpleado = empleados[0].id;
-            this.nombreEmpleado = empleados[0].nombre;
-            this.salarioEmpleado = empleados[0].salario;
+      this.addressForm = this.fb.group({
+        id: null,
+        codigo: [null, Validators.required],
+        nombre: [null, Validators.required],
+        salario: [null, Validators.required],
+        creado_por: [null, Validators.required]
+      }
+      );
+    }
+    //
+    onSubmit(): void {
+      //<!--0907-17-23013-->
+      if(this.id != undefined){
+        this.service.updateEmpleado(this.empleado).subscribe(
+          res => {
+            alert(res);
+          }
+        )
+        this.router.navigate(['empleados']);
+      }else{
+        this.service.insertEmpleado(this.empleado).subscribe(
+          res => {
+            console.log(res);
           }
         );
+        this.router.navigate(['empleados']);
       }
     }
-  }
 
-  // para el boton de guardar en el formulario
-  ngOnGuardar(): void {
-    const empleado = new Empleado(this.codigoEmpleado, this.idEmpleado, this.nombreEmpleado, this.salarioEmpleado);
-    if (this.idEmpleado != null) {
-      this.service.updateEmpleado(this.idEmpleado, empleado);
-    }else{
-      this.service.saveEmpleado(empleado);
-    }
-    this.router.navigate(['empleados']);
-  }
 
-  // para el boton de eliminar en el formulario
   ngOnEliminar(): void {
     this.router.navigate(['empleados']);
   }
-  // para el boton de cancelar en el formulario
   ngOnCancelar(): void {
     this.router.navigate(['empleados']);
   }
+
 
 }

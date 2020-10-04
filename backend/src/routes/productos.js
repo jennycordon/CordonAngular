@@ -3,7 +3,7 @@ const mySqlCon = require("../db/database");
 const security = require ("../security/security");
 const jwt = require ('jsonwebtoken');
 const router = express.Router();
-
+//<!--0907-17-23013-->
 router.get('/productos',security,(req, res)=>{
     console.log('get productos')
     mySqlCon.query("select * from productos",(err,rows,fields)=>{
@@ -55,7 +55,7 @@ router.post('/productos',security,(req,res)=>{
     })
 });
 
-//para actualizar
+//para actualizar sin id
 router.put('/productos',security,(req,res)=>{
     let emp = req.body;
     console.log('update productos')
@@ -65,6 +65,21 @@ router.put('/productos',security,(req,res)=>{
             res.send('updated Succesfully');
         }else{
             console.log(err);
+        }
+    })
+});
+
+//actualizar con id
+router.put('/productos/:id', security, (req,res)=>{
+    let pro = req.body;
+    console.log('PUT productos')
+    mySqlCon.query('update productos set nombre=?, precio=?, creado_por=? where id = ?',
+    [pro.nombre,pro.precio,pro.creado_por,req.params.id],(err,result)=>{
+        if(!err){
+            res.send('updated successfully');            
+        }else{
+            console.log(err.sqlMessage);
+            res.status(500).send(err.sqlMessage);
         }
     })
 });

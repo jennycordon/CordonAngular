@@ -1,17 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 import { ProductosFacturasComponent } from './productos-facturas.component';
 
-describe('ProductosFacturasComponent', () => {
+describe('ProductosfacturasComponent', () => {
   let component: ProductosFacturasComponent;
   let fixture: ComponentFixture<ProductosFacturasComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProductosFacturasComponent ]
-    })
-    .compileComponents();
-  });
+  //<!--0907-17-23013-->
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ProductosFacturasComponent ],
+      imports: [
+        NoopAnimationsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+      ]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductosFacturasComponent);
@@ -19,7 +28,7 @@ describe('ProductosFacturasComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

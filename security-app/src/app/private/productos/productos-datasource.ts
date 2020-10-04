@@ -1,13 +1,13 @@
-import { Empleado } from './../../models/empleado';
+import { Producto } from './../../models/producto';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-//<!--0907-17-23013-->
-export class EmpleadosDataSource extends DataSource<Empleado> {
-  data: Empleado[];
+
+export class ProductosDataSource extends DataSource<Producto> {
+  data: Producto[];
   paginator: MatPaginator;
   sort: MatSort;
 
@@ -20,7 +20,7 @@ export class EmpleadosDataSource extends DataSource<Empleado> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<Empleado[]> {
+  connect(): Observable<Producto[]> {
 
     const dataMutations = [
       observableOf(this.data),
@@ -33,27 +33,29 @@ export class EmpleadosDataSource extends DataSource<Empleado> {
     }));
   }
 
+
   disconnect() {}
 
-
-  private getPagedData(data: Empleado[]) {
+  /**
+   * Paginate the data (client-side). If you're using server-side pagination,
+   * this would be replaced by 0907-17-23013 requesting the appropriate data from the server.
+   */
+  private getPagedData(data: Producto[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
 
-
-  private getSortedData(data: Empleado[]) {
+  private getSortedData(data: Producto[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
-
+//<!--0907-17-23013-->
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'id': return compare(a.id, b.id, isAsc);
-        case 'codigo': return compare(+a.codigo, +b.codigo, isAsc);
-        case 'nombre': return compare(a.nombre, b.nombre, isAsc);
-        case 'salario': return compare(+a.salario, +b.salario, isAsc);
+        case 'nombre': return compare(+a.nombre, +b.nombre, isAsc);
+        case 'precio': return compare(a.precio, b.precio, isAsc);
         case 'creado_por': return compare(+a.creado_por, +b.creado_por, isAsc);
         default: return 0;
       }
@@ -61,7 +63,7 @@ export class EmpleadosDataSource extends DataSource<Empleado> {
   }
 }
 
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
+
 function compare(a: string | number, b: string | number, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

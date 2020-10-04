@@ -1,19 +1,51 @@
-<table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Creado_por</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let prod of productos">
-      <th scope="row"><a [routerLink]="['/productos', prod.id]">{{prod.id}}</a></th>
-      <td>{{prod.nombre}}</td>
-      <td>{{prod.precio}}</td>
-      <td>{{prod.creado_por}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+<!--0907-17-23013-->
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+    </ng-container>
 
+    <!-- Precio Column -->
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+      <td mat-cell *matCellDef="let row">{{row.precio}}</td>
+    </ng-container>
+
+    <!-- Creadopor Column -->
+    <ng-container matColumnDef="creado_por">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Creado por</th>
+      <td mat-cell *matCellDef="let row">{{row.creado_por}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="modificar">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Modificar</th>
+      <td mat-cell *matCellDef="let row"><button mat-raised-button class="btn btn-primary"  (click)="onModificar(row.id)" type="submit">MODIFICAR</button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Eliminar</th>
+      <td mat-cell *matCellDef="let row"><button mat-raised-button  class="btn btn-danger"  (click)="onEliminar(row.id)" type="submit">ELIMINAR</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+   <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[5, 10, 15, 20]">
+  </mat-paginator>
+</div>
+
+<div class="float-left">
+  <button mat-raised-button color="primary" [routerLink]="['/productos/add']">Agregar</button>
+</div>

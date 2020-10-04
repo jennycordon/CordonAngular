@@ -1,38 +1,65 @@
-import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/cliente';
 import { ClienteService } from './../../services/cliente.service';
-import { Router } from '@angular/router'; // para el onAgregar
-import { ClienteDataServiceService } from './../../services/cliente-data-service.service';
-
+import { Router } from '@angular/router';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
+import { ClientesDataSource } from './clientes-datasource';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+//<!--0907-17-23013-->
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css']
 })
-export class ClientesComponent implements OnInit {
+export class ClientesComponent implements AfterViewInit, OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<Cliente>;
+  dataSource: ClientesDataSource;
 
   constructor(private clienteService: ClienteService,
-    private router: Router, // para el onAgregar
-    private service: ClienteDataServiceService
+              private router: Router,
+              private fb: FormBuilder
     ) { }
 
-  //clientes: Cliente[];
-  clientes: Cliente[]=[];
+  ClientForm: FormGroup;
+  clientes: Cliente[] = [];
+
+  displayedColumns = ['id', 'nombre', 'direccion', 'nit', 'creado_por', 'modificar', 'eliminar'];
 
   ngOnInit(): void {
-    this.service.getClientes().subscribe(
-      (clientes: Cliente[]) => {
-        this.clientes = clientes;
+    this.dataSource = new ClientesDataSource();
+    this.clienteService.getClientes().subscribe(
+
+      (res) => {
+        this.clientes = res;
+        this.dataSource.data = this.clientes;
       }
     );
   }
- /* ngOnInit(): void {
-    this.clientes = this.service.getClientes();
-  }*/
 
-  // para mostrar el formulario de agregar clientes
-  onAgregar(){
-   this.router.navigate(['clientes/add']);
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.table.dataSource = this.dataSource;
   }
+  onModificar(id){
+    this.router.navigate(['clientes/'+id]);
+   }
 
+   onEliminar(id): void {
+    if(confirm('¿Estas seguro que deseas eliminar el registro?')){
+      this.clienteService.deleteCliente(id).subscribe(
+        res => {
+
+        }
+      );
+    }
+    this.router.navigate(['clientes'])
+  .then(() => {
+    window.location.reload();
+  });
+  }
 }

@@ -1,33 +1,29 @@
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>EMPLEADO</mat-card-title>
+      <mat-card-title>PRODUCTO</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="col">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="id..." formControlName="id"  [(ngModel)]="empleado.id">
+            <input matInput placeholder="id..." formControlName="id"  [(ngModel)]="producto.id">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="codigo..." formControlName="codigo" [(ngModel)]="empleado.codigo">
+            <input matInput placeholder="nombre..." formControlName="nombre" [(ngModel)]="producto.nombre">
+          </mat-form-field>
+          <!--0907-17-23013-->
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="precio..." formControlName="precio" [(ngModel)]="producto.precio">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="nombre..." formControlName="nombre" [(ngModel)]="empleado.nombre">
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="salario..." formControlName="salario"[(ngModel)]="empleado.salario">
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="creado por..." formControlName="creado_por" [(ngModel)]="empleado.creado_por">
+            <input matInput placeholder="creado por..." formControlName="creado_por" [(ngModel)]="producto.creado_por">
           </mat-form-field>
         </div>
       </div>
@@ -39,4 +35,3 @@
     </mat-card-actions>
   </mat-card>
 </form>
-<!--0907-17-23013-->

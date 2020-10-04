@@ -5,7 +5,7 @@ const jwt = require ('jsonwebtoken');
 const { Router } = require("express");
 const { route } = require("./clientes");
 const router = express.Router();
-
+//<!--0907-17-23013-->
 //consulta de todos los registros
 router.get('/empleados',security,(req, res)=>{
     console.log('get empleados')
